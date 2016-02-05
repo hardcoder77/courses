@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+#Create users:
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser0@test.com",\n  "name": "test0",\n  "phone": "9898989890"\n}' --compressed
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser1@test.com",\n  "name": "test1",\n  "phone": "9898989891"\n}' --compressed
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser2@test.com",\n  "name": "test2",\n  "phone": "9898989892"\n}' --compressed
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser3@test.com",\n  "name": "test3",\n  "phone": "9898989893"\n}' --compressed
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser4@test.com",\n  "name": "test4",\n  "phone": "9898989894"\n}' --compressed
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser5@test.com",\n  "name": "test5",\n  "phone": "9898989895"\n}' --compressed
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser6@test.com",\n  "name": "test6",\n  "phone": "9898989896"\n}' --compressed
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser7@test.com",\n  "name": "test7",\n  "phone": "9898989897"\n}' --compressed
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser8@test.com",\n  "name": "test8",\n  "phone": "9898989898"\n}' --compressed
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser9@test.com",\n  "name": "test9",\n  "phone": "9898989899"\n}' --compressed
+curl 'http://localhost:10000/users'  -H 'Content-Type: application/json'  --data-binary $'{\n  "email": "testuser10@test.com",\n  "name": "test10",\n  "phone": "9898989990"\n}' --compressed
+
+#Create courses:
+curl 'http://localhost:10000/courses' -H 'Content-Type: application/json' --data-binary $'{\n  "description": "Math",\n  "name": "Maths",\n  "max_score": 100\n}' --compressed
+curl 'http://localhost:10000/courses' -H 'Content-Type: application/json' --data-binary $'{\n  "description": "Science",\n  "name": "Science",\n  "max_score": 100\n}' --compressed
+curl 'http://localhost:10000/courses' -H 'Content-Type: application/json' --data-binary $'{\n  "description": "English",\n  "name": "English",\n  "max_score": 100\n}' --compressed
+
+#Invite users to courses
+curl 'http://localhost:10000/courses/invitations/users/bulk' -H 'Content-Type: application/json'  --data-binary $'{\n  "requests": [\n {\n  "user_email": "testuser0@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser0@test.com",\n  "course_name": "Science"\n},\n{\n  "user_email": "testuser1@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser1@test.com",\n  "course_name": "Science"\n},\n{\n  "user_email": "testuser2@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser2@test.com",\n  "course_name": "Science"\n},\n{\n  "user_email": "testuser3@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser3@test.com",\n  "course_name": "Science"\n},\n{\n  "user_email": "testuser4@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser4@test.com",\n  "course_name": "Science"\n},\n{\n  "user_email": "testuser5@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser5@test.com",\n  "course_name": "Science"\n},\n{\n  "user_email": "testuser6@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser6@test.com",\n  "course_name": "Science"\n},\n{\n  "user_email": "testuser7@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser7@test.com",\n  "course_name": "Science"\n},\n{\n  "user_email": "testuser8@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser8@test.com",\n  "course_name": "Science"\n},\n{\n  "user_email": "testuser9@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser9@test.com",\n  "course_name": "Science"\n},\n{\n  "user_email": "testuser10@test.com",\n  "course_name": "Maths"\n},\n{\n  "user_email": "testuser10@test.com",\n  "course_name": "Science"\n}\n\n  ]\n}' --compressed
+
+#Assign scores to users
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser0@test.com",\n  "course_name": "Maths",\n  "score": 34\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser1@test.com",\n  "course_name": "Maths",\n  "score": 45\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser2@test.com",\n  "course_name": "Maths",\n  "score": 56\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser3@test.com",\n  "course_name": "Maths",\n  "score": 65\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser4@test.com",\n  "course_name": "Maths",\n  "score": 76\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser5@test.com",\n  "course_name": "Maths",\n  "score": 21\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser6@test.com",\n  "course_name": "Maths",\n  "score": 54\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser7@test.com",\n  "course_name": "Maths",\n  "score": 98\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser8@test.com",\n  "course_name": "Maths",\n  "score": 90\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser9@test.com",\n  "course_name": "Maths",\n  "score": 76\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser10@test.com",\n  "course_name": "Maths",\n  "score": 32\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser0@test.com",\n  "course_name": "Science",\n  "score": 43\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser1@test.com",\n  "course_name": "Science",\n  "score": 54\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser2@test.com",\n  "course_name": "Science",\n  "score": 65\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser3@test.com",\n  "course_name": "Science",\n  "score": 24\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser4@test.com",\n  "course_name": "Science",\n  "score": 74\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser5@test.com",\n  "course_name": "Science",\n  "score": 92\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser6@test.com",\n  "course_name": "Science",\n  "score": 26\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser7@test.com",\n  "course_name": "Science",\n  "score": 13\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser8@test.com",\n  "course_name": "Science",\n  "score": 83\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser9@test.com",\n  "course_name": "Science",\n  "score": 90\n\n}' --compressed
+curl 'http://localhost:10000/users/courses/score' -H 'Content-Type: application/json' --data-binary $'{\n\n  "user_email": "testuser10@test.com",\n  "course_name": "Science",\n  "score": 34\n\n}' --compressed

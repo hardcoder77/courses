@@ -1,0 +1,84 @@
+allprojects {
+    apply plugin: 'idea'
+    group = 'com.manage.courses'
+}
+
+subprojects {
+    apply plugin: 'java'
+
+
+    buildscript {
+        repositories {
+            mavenCentral()
+        }
+    }
+
+    dependencies {
+        repositories {
+            mavenCentral()
+        }
+
+        compile 'org.modelmapper:modelmapper:0.6.3'
+
+        compile 'io.dropwizard:dropwizard-core:' + dropwizardVersion,
+                'io.dropwizard:dropwizard-jdbi:' + dropwizardVersion,
+                'io.dropwizard:dropwizard-migrations:' + dropwizardVersion
+
+        compile('com.hubspot.dropwizard:dropwizard-guice:' + '0.7.0.2') {
+            exclude group: 'com.google.inject', module: 'guice_servlet'
+        }
+        compile 'org.projectlombok:lombok:' + lombokVersion
+
+        compile 'org.slf4j:slf4j-api:' + slf4jVersion,
+                'org.slf4j:log4j-over-slf4j:' + slf4jVersion
+        compile 'org.slf4j:jul-to-slf4j:1.7.5'
+
+
+        testCompile 'junit:junit:4.11'
+        testCompile 'org.jukito:jukito:1.3'
+        testCompile 'io.dropwizard:dropwizard-testing:' + dropwizardVersion
+
+    }
+
+}
+
+subprojects {
+    configurations {
+        all*.exclude group: 'log4j', module: 'log4j'
+        all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+        all*.exclude group: 'org.slf4j', module: 'slf4j-simple'
+        all*.exclude group: 'org.testng', module: 'testng'
+    }
+
+    // this is required for entity scanning to work correctly while
+    // running tests from gradle -
+    // http://forums.gradle.org/gradle/topics/regression_with_classloading_in_the_jetty_plugin_with_gradle_1_0_milestone_6
+    sourceSets.main.output.resourcesDir = sourceSets.main.output.classesDir
+    jar {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+}
+
+task createWrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
+project(':manager') {
+}
+
+
+ext.mainClassName = 'com.manage.courses.ManageCourseApplication'
+ext.configFile = './src/main/resources/development.yaml'
+ext.appName = 'manage-courses'
+ext.hostname = 'localhost'
+
+
+buildscript {
+    apply from: file('gradle/buildscript.gradle'), to: buildscript
+}
+
+
+apply from: file("gradle/common.gradle")
+
+
+
