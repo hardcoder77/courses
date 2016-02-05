@@ -35,7 +35,7 @@ public class ManageCourseApplication extends Application<CourseManagerConfigurat
   }
 
   @Override
-  public void run(CourseManagerConfiguration nostraConfiguration, Environment environment) throws Exception {
+  public void run(CourseManagerConfiguration courseManagerConfiguration, Environment environment) throws Exception {
 
   }
 }

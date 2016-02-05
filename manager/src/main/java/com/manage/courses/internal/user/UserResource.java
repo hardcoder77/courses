@@ -1,7 +1,6 @@
 package com.manage.courses.internal.user;
 
 import com.google.inject.Inject;
-import com.manage.courses.internal.course.InviteUserToCourseAction;
 import com.manage.courses.user.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,15 +15,13 @@ public class UserResource {
 
     private final CreateUserAction createUserAction;
     private final AssignScoreToUserAction assignScoreToUserAction;
-    private final InviteUserToCourseAction inviteUserToCourseAction;
     private final SearchUsersInvitedForCourseAction searchUsersInvitedForCourseAction;
     private final GetTop10UsersByTotalMarksAction getTop10UsersByTotalMarksAction;
 
     @Inject
-    public UserResource(CreateUserAction createUserAction, AssignScoreToUserAction assignScoreToUserAction, InviteUserToCourseAction inviteUserToCourseAction, SearchUsersInvitedForCourseAction searchUsersInvitedForCourseAction, GetTop10UsersByTotalMarksAction getTop10UsersByTotalMarksAction) {
+    public UserResource(CreateUserAction createUserAction, AssignScoreToUserAction assignScoreToUserAction, SearchUsersInvitedForCourseAction searchUsersInvitedForCourseAction, GetTop10UsersByTotalMarksAction getTop10UsersByTotalMarksAction) {
         this.createUserAction = createUserAction;
         this.assignScoreToUserAction = assignScoreToUserAction;
-        this.inviteUserToCourseAction = inviteUserToCourseAction;
         this.searchUsersInvitedForCourseAction = searchUsersInvitedForCourseAction;
         this.getTop10UsersByTotalMarksAction = getTop10UsersByTotalMarksAction;
     }
